@@ -1,136 +1,598 @@
 <!DOCTYPE html>
-<html lage="en">
+<html lang="pt-BR">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet"> 
-	<link href="css/style.css" rel="stylesheet" type="text/css" />
-	<title>Facebook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <title>Facebook</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f0f2f5;
+    }
+
+    /* HEADER */
+    header {
+      background: #1877f2;
+      padding: 10px 0;
+    }
+
+    header .center {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+    }
+
+    .logo h2 {
+      color: white;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .form-login {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form-login .form-element {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-login .form-element p {
+      color: rgba(255,255,255,0.85);
+      font-size: 12px;
+      margin-bottom: 3px;
+    }
+
+    .form-login input[type="email"],
+    .form-login input[type="password"] {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      width: 180px;
+      outline: none;
+      transition: border .2s;
+    }
+
+    .form-login input[type="email"]:focus,
+    .form-login input[type="password"]:focus {
+      border-color: #1877f2;
+      box-shadow: 0 0 0 2px rgba(24,119,242,0.2);
+    }
+
+    .form-login input[type="submit"] {
+      background: white;
+      color: #1877f2;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s;
+      margin-top: 18px;
+    }
+
+    .form-login input[type="submit"]:hover {
+      background: #f0f2f5;
+    }
+
+    /* MAIN */
+    .main {
+      padding: 30px 0;
+    }
+
+    .main .center {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      padding: 0 16px;
+    }
+
+    .img-pessoas {
+      flex: 1;
+    }
+
+    .img-pessoas h3 {
+      font-size: 24px;
+      font-weight: 400;
+      color: #1c1e21;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+
+    .img-pessoas img {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    /* CADASTRO */
+    .abrir-conta {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      width: 380px;
+      flex-shrink: 0;
+    }
+
+    .abrir-conta h2 {
+      font-size: 22px;
+      color: #1c1e21;
+      margin-bottom: 4px;
+    }
+
+    .abrir-conta h3 {
+      font-size: 15px;
+      font-weight: 400;
+      color: #606770;
+      margin-bottom: 16px;
+    }
+
+    .criar-conta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .w50 { width: calc(50% - 5px); }
+    .w100 { width: 100%; }
+
+    .criar-conta input[type="text"],
+    .criar-conta input[type="email"],
+    .criar-conta input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      transition: border .2s;
+      background: #f5f6f7;
+    }
+
+    .criar-conta input:focus {
+      border-color: #1877f2;
+      background: white;
+      box-shadow: 0 0 0 2px rgba(24,119,242,0.2);
+    }
+
+    .criar-conta input.erro {
+      border-color: #e53e3e;
+      background: #fff5f5;
+    }
+
+    .criar-conta h3 {
+      font-size: 12px;
+      color: #606770;
+      margin-bottom: 6px;
+    }
+
+    .nascimento-group {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .nascimento {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 13px;
+      background: #f5f6f7;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .nascimento:focus {
+      border-color: #1877f2;
+      background: white;
+    }
+
+    .genero-group {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .input-radio {
+      flex: 1;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #1c1e21;
+      cursor: pointer;
+      background: #f5f6f7;
+      transition: border .2s;
+    }
+
+    .input-radio:hover { border-color: #1877f2; }
+
+    .input-radio input { cursor: pointer; }
+
+    .criar-conta input[type="submit"] {
+      background: #00a400;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s;
+      width: 60%;
+      margin: 4px auto 0;
+    }
+
+    .criar-conta input[type="submit"]:hover {
+      background: #008a00;
+    }
+
+    /* MENSAGEM DE ERRO */
+    .msg-erro {
+      color: #e53e3e;
+      font-size: 12px;
+      margin-top: -6px;
+      display: none;
+    }
+
+    /* MODAL DE SUCESSO */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal-overlay.ativo {
+      display: flex;
+    }
+
+    .modal {
+      background: white;
+      border-radius: 8px;
+      padding: 32px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+    }
+
+    .modal h2 {
+      color: #1877f2;
+      margin-bottom: 12px;
+    }
+
+    .modal p {
+      color: #606770;
+      margin-bottom: 20px;
+    }
+
+    .modal button {
+      background: #1877f2;
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .modal button:hover { background: #166fe5; }
+
+    /* RODAPÉ */
+    .linguas {
+      background: white;
+      border-top: 1px solid #ddd;
+      padding: 16px 0;
+      margin-top: 30px;
+    }
+
+    .linguas .center {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    .linguas nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .linguas nav ul li a {
+      color: #606770;
+      text-decoration: none;
+      font-size: 13px;
+      transition: color .2s;
+    }
+
+    .linguas nav ul li a:hover,
+    .linguas nav ul li a.selected {
+      color: #1877f2;
+      text-decoration: underline;
+    }
+
+    .clear { clear: both; }
+
+    @media (max-width: 768px) {
+      header .center { flex-direction: column; gap: 12px; }
+      .form-login { flex-wrap: wrap; justify-content: center; }
+      .main .center { flex-direction: column; }
+      .abrir-conta { width: 100%; }
+    }
+  </style>
 </head>
-<body> 
-	<header>
-		<div class="center">
-			<div class="logo">
-				<h2>Facebook</h2>
-			</div>
-			<form action="" class="form-login">
-				<div class="form-element">
-					<p>Email ou Telefone:</p>
-					<input type="email" name="email" id="">
-				</div>
-				<div class="form-element">
-					<p>Senha:</p>
-					<input type="password" name="senha" id="">
-				</div>
-				<div class="form-element">
-					<input type="submit" value="Entrar" name="acao">
-				</div>
-				<div class="clear"></div>
-			</form>
-			<div class="clear"></div>
-		</div>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="center">
+    <div class="logo">
+      <h2>facebook</h2>
+    </div>
+    <form class="form-login" id="formLogin">
+      <div class="form-element">
+        <p>Email ou Telefone:</p>
+        <input type="email" id="loginEmail" placeholder="Email ou telefone">
+      </div>
+      <div class="form-element">
+        <p>Senha:</p>
+        <input type="password" id="loginSenha" placeholder="Senha">
+      </div>
+      <div class="form-element">
+        <input type="submit" value="Entrar">
+      </div>
+    </form>
+  </div>
 </header>
-	
-	<section class="main">
-		<div class="center">
-			<div class="img-pessoas">
-				<h3>O Facebook ajuda você a se conectar e compartilhar com as pessoas que fazem parte da sua vida.</h3>
-				<img src="img/img1.png" alt="">
-			</div>
-			<div class="abrir-conta">
-				<h2>Abra uma conta</h2>
-				<h3>É rápido e fácil.</h3>
-				<form action="" class="criar-conta">
-					<div class="w50">
-						<input type="text" placeholder="Nome" name="" id="">
-					</div>
-					<div class="w50">
-						<input type="text" placeholder="Sobrenome" name="" id="">
-					</div>
-					<div class="w100">
-							<input type="email" placeholder="Email" name="" id="">
-					</div>
-					<div class="w100">
-						<input type="password" placeholder="Senha" name="" id="">
-					</div>
-					<div class="w100">
-						<h3>Data de Nascimento</h3>
-						<select name="nascimento-dia" id="data" class="nascimento">
-						<?php
-      					   	 for ($i=1; $i < 31 ; $i++) {
-      					   ?>
-      					       <option value="<?php echo $i; ?>">
-      					       <?php echo $i; ?></option>
-      					   <?php } ?>
-					</select>
-					<select name="nascimento-mes" id="data" class="nascimento">
-						<option value="1">Janeiro</option>
-						<option value="2">Fevereiro</option>
-						<option value="3">Março</option>
-						<option value="4">Abril</option>
-						<option value="5">Maio</option>
-						<option value="6">Junho</option>						
-						<option value="7">Julho</option>
-						<option value="8">Agosto</option>
-						<option value="9">Setembro</option>
-						<option value="10">Outubro</option>
-						<option value="11">Novembro</option>
-						<option value="12">Dezembro</option>
-					</select>
-					<select name="nascimento-ano" id="data" class="nascimento">
-						<?php
-							for($i=1940; $i <=2022 ; $i++) {
-							?>
-						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-							<?php } ?>
-							</select> 
-				</div>
-				<div class="w100">
-					<h3>Gênero</h3>
-				         <div class="input-radio">
-                         <input type="radio" value="masculino" name="sexo" id="">
-                         <label for="">Masculino</label>
-                         </div>
-                          <div class="input-radio">
-                          <input type="radio" value="feminino" name="sexo" id="">
-                          <label for="">Feminino</label>
-                      </div>
-                      <div class="input-radio">
-                           <input type="radio" value="personalizado" name="sexo" id="">
-                         <label for="">Personalizado</label>
-                     </div>
-				 </div>
-				 <div class="w50">
-				 	<input type="submit" value="Cadastre-se" />
-				 </div>
-				 <div class="clear"></div>
-				</form>
-			</div>
-			<div class="clear"></div>
-		</div>
-	</section>
-	<section class="linguas">
-		<div class="center">
-			<nav>
-				<ul>
-					<li><a class="selected" href=""> Português(Brasil)</a></li>
-					<li><a href=""> Português(Brasil)</a></li>
-					<li><a href=""> Português(Brasil)</a></li>
-					<li><a href=""> Português(Brasil)</a></li>
-					<li><a href=""> Português(Brasil)</a></li>
-					<li><a href=""> Português(Brasil)</a></li>
-				</ul>
-			</nav>
-		</div>
-		<div class="center">
-			<nav>
-				<ul>
-					<li><a href="">Cadastre-se</a></li>
-					<li><a href="">Entrar</a></li>
-					<li><a href="">Mensanger</a></li>
-				</ul>
-			</nav>
-		</div>
-	</section>
+
+<!-- MAIN -->
+<section class="main">
+  <div class="center">
+    <div class="img-pessoas">
+      <h3>O Facebook ajuda você a se conectar e compartilhar com as pessoas que fazem parte da sua vida.</h3>
+      <img src="img/img1.png" alt="Pessoas conectadas">
+    </div>
+
+    <div class="abrir-conta">
+      <h2>Abra uma conta</h2>
+      <h3>É rápido e fácil.</h3>
+
+      <form class="criar-conta" id="formCadastro">
+        <div class="w50">
+          <input type="text" id="nome" placeholder="Nome">
+        </div>
+        <div class="w50">
+          <input type="text" id="sobrenome" placeholder="Sobrenome">
+        </div>
+        <div class="w100">
+          <input type="email" id="emailCadastro" placeholder="Email">
+        </div>
+        <div class="w100">
+          <input type="password" id="senhaCadastro" placeholder="Nova senha">
+        </div>
+
+        <div class="w100">
+          <h3>Data de Nascimento</h3>
+          <div class="nascimento-group">
+            <select class="nascimento" id="dia"></select>
+            <select class="nascimento" id="mes">
+              <option value="">Mês</option>
+              <option value="1">Janeiro</option>
+              <option value="2">Fevereiro</option>
+              <option value="3">Março</option>
+              <option value="4">Abril</option>
+              <option value="5">Maio</option>
+              <option value="6">Junho</option>
+              <option value="7">Julho</option>
+              <option value="8">Agosto</option>
+              <option value="9">Setembro</option>
+              <option value="10">Outubro</option>
+              <option value="11">Novembro</option>
+              <option value="12">Dezembro</option>
+            </select>
+            <select class="nascimento" id="ano"></select>
+          </div>
+        </div>
+
+        <div class="w100">
+          <h3>Gênero</h3>
+          <div class="genero-group">
+            <label class="input-radio">
+              Masculino <input type="radio" name="sexo" value="masculino">
+            </label>
+            <label class="input-radio">
+              Feminino <input type="radio" name="sexo" value="feminino">
+            </label>
+            <label class="input-radio">
+              Personalizado <input type="radio" name="sexo" value="personalizado">
+            </label>
+          </div>
+        </div>
+
+        <div class="w50">
+          <input type="submit" value="Cadastre-se">
+        </div>
+        <div class="clear"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<section class="linguas">
+  <div class="center">
+    <nav>
+      <ul>
+        <li><a class="selected" href="#">Português (Brasil)</a></li>
+        <li><a href="#">English (US)</a></li>
+        <li><a href="#">Español</a></li>
+        <li><a href="#">Français</a></li>
+        <li><a href="#">Deutsch</a></li>
+        <li><a href="#">Italiano</a></li>
+      </ul>
+    </nav>
+    <nav>
+      <ul>
+        <li><a href="#">Cadastre-se</a></li>
+        <li><a href="#">Entrar</a></li>
+        <li><a href="#">Messenger</a></li>
+        <li><a href="#">Privacidade</a></li>
+        <li><a href="#">Termos</a></li>
+      </ul>
+    </nav>
+    <p style="font-size:12px;color:#999;margin-top:10px;">Facebook © 2024</p>
+  </div>
+</section>
+
+<!-- MODAL SUCESSO -->
+<div class="modal-overlay" id="modalSucesso">
+  <div class="modal">
+    <h2>✓ Conta criada!</h2>
+    <p id="modalMensagem">Bem-vindo ao Facebook!</p>
+    <button onclick="fecharModal()">Continuar</button>
+  </div>
+</div>
+
+<script>
+  // ---- Preenche os dias ----
+  const selectDia = document.getElementById('dia');
+  selectDia.innerHTML = '<option value="">Dia</option>';
+  for (let i = 1; i <= 31; i++) {
+    selectDia.innerHTML += `<option value="${i}">${i}</option>`;
+  }
+
+  // ---- Preenche os anos ----
+  const selectAno = document.getElementById('ano');
+  selectAno.innerHTML = '<option value="">Ano</option>';
+  const anoAtual = new Date().getFullYear();
+  for (let i = anoAtual; i >= 1940; i--) {
+    selectAno.innerHTML += `<option value="${i}">${i}</option>`;
+  }
+
+  // ---- Login ----
+  document.getElementById('formLogin').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('loginEmail').value.trim();
+    const senha = document.getElementById('loginSenha').value.trim();
+
+    if (!email || !senha) {
+      alert('Por favor, preencha o email e a senha.');
+      return;
+    }
+
+    // verifica se tem conta salva
+    const contas = JSON.parse(localStorage.getItem('contas') || '[]');
+    const conta = contas.find(c => c.email === email && c.senha === senha);
+
+    if (conta) {
+      mostrarModal(`Bem-vindo de volta, ${conta.nome}! Login realizado com sucesso.`);
+    } else {
+      alert('Email ou senha incorretos. Verifique seus dados ou crie uma conta.');
+    }
+  });
+
+  // ---- Cadastro ----
+  document.getElementById('formCadastro').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const nome      = document.getElementById('nome').value.trim();
+    const sobrenome = document.getElementById('sobrenome').value.trim();
+    const email     = document.getElementById('emailCadastro').value.trim();
+    const senha     = document.getElementById('senhaCadastro').value.trim();
+    const dia       = document.getElementById('dia').value;
+    const mes       = document.getElementById('mes').value;
+    const ano       = document.getElementById('ano').value;
+    const sexo      = document.querySelector('input[name="sexo"]:checked');
+
+    // validações
+    if (!nome || !sobrenome) {
+      alert('Por favor, insira seu nome completo.');
+      return;
+    }
+
+    if (!email || !email.includes('@')) {
+      alert('Por favor, insira um email válido.');
+      return;
+    }
+
+    if (!senha || senha.length < 6) {
+      alert('A senha deve ter pelo menos 6 caracteres.');
+      return;
+    }
+
+    if (!dia || !mes || !ano) {
+      alert('Por favor, selecione sua data de nascimento completa.');
+      return;
+    }
+
+    if (!sexo) {
+      alert('Por favor, selecione seu gênero.');
+      return;
+    }
+
+    // salva no localStorage
+    const contas = JSON.parse(localStorage.getItem('contas') || '[]');
+
+    if (contas.find(c => c.email === email)) {
+      alert('Este email já está cadastrado. Tente fazer login.');
+      return;
+    }
+
+    contas.push({
+      nome,
+      sobrenome,
+      email,
+      senha,
+      nascimento: `${dia}/${mes}/${ano}`,
+      sexo: sexo.value
+    });
+
+    localStorage.setItem('contas', JSON.stringify(contas));
+    mostrarModal(`Conta criada com sucesso! Bem-vindo, ${nome}!`);
+    document.getElementById('formCadastro').reset();
+  });
+
+  // ---- Modal ----
+  function mostrarModal(mensagem) {
+    document.getElementById('modalMensagem').textContent = mensagem;
+    document.getElementById('modalSucesso').classList.add('ativo');
+  }
+
+  function fecharModal() {
+    document.getElementById('modalSucesso').classList.remove('ativo');
+  }
+
+  // fecha modal clicando fora
+  document.getElementById('modalSucesso').addEventListener('click', function(e) {
+    if (e.target === this) fecharModal();
+  });
+</script>
+
 </body>
 </html>
